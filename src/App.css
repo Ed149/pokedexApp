@@ -1,0 +1,277 @@
+:root {
+  --sizeImg: 100px;
+  --fire: rgba(252, 39, 19, 0.655);
+  --grass: rgba(103, 212, 48, 0.916);
+  --water: rgba(90, 183, 245, 0.827);
+  --bug: #c2d41f;
+  --normal:#A8A878;
+  --lightGray:rgb(206 208 211);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+a{
+  text-decoration: none;
+}
+
+/* a:visited{
+  color:rgb(189, 191, 194);
+} */
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+  padding: 1rem 1.3rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 3rem;
+  padding: 1.5rem 1rem;
+}
+
+.pokedex__h2 {
+  margin: 1rem 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.pokemon__cards {
+  min-height: 100vh;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  width: 100%;
+  height: 130px;
+  border-radius: 1.2rem;
+  padding: .8rem;
+  position: relative;
+  z-index: 0;
+
+}
+
+.card__info{
+  color: white;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+}
+.card__info .card__info_id{
+  display: block;
+  text-align: right;
+}
+
+.card h3 {
+  margin-top: -7px;
+}
+
+.types {
+  margin-top: .7rem;
+}
+
+ul {
+  list-style: none;
+}
+
+.types li {
+  width: 45%;
+  background-color: rgba(255, 255, 255, 0.3);
+  /* opacity: 0.3; */
+  margin: .4rem 0;
+  border-radius: .7rem;
+  text-align: center;
+  padding: .2rem;
+}
+
+.types li>p {
+  font-size: 12px;
+}
+
+
+
+.card__img {
+  position: absolute;
+  width: var(--sizeImg);
+  height: var(--sizeImg);
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  /* background-image: url('/src/assets/pokeb.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat; */
+}
+
+.pokemon__details{
+  min-height: 100vh;
+  position:relative;
+}
+
+.card__info_pokemon{
+  display: flex;
+  font-size: 2rem;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+.card__info_pokemon .card__info_description{
+  width:50%;
+}
+
+.card__info_pokemon .types{
+  display: flex;
+  font-size:2rem;
+  gap:10px;
+}
+.card__info_pokemon .types li{
+  padding: .5rem;
+}
+
+.pokemon__details_info{
+  position: relative;
+  display: block;
+  background-color: white;
+  width: 100%;
+  height:466px;
+  border-top-right-radius:2.6rem;
+  border-top-left-radius: 2.6rem;
+  bottom: -14.9rem;
+  z-index:10;
+}
+
+.pokemon__details_info_img img{
+  position: absolute;
+  width:290px;
+  height: 290px;
+  top: -15rem;
+  right: 4.5rem;
+}
+
+.pokemon__details_info__resume{
+  padding:3rem 2rem;
+}
+
+.pokemon__details_info__resume_nav{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--lightGray);
+
+  
+}
+.pokemon__details_info__resume_nav a{
+  font-weight: 700;
+  color:var(--lightGray);
+  padding-bottom: 1.5rem;
+
+}
+.pokemon__details_info__resume_nav a.active{
+  color:red;
+  border-bottom: 1px solid blue;
+}
+.pokemon__details_info__resume_stats{
+  padding:1rem 0;
+}
+.pokemon__details_info__resume_breeding h2{
+  padding-bottom: 1rem; 
+
+}
+
+
+.stat{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  padding:.5rem 0;
+  color:var(--lightGray);
+  font-weight: 500;
+}
+
+.stat p{
+  text-align: left;
+  grid-column: 2/4;
+  color:black;
+  text-transform: capitalize;
+}
+
+.stat img{
+  width: 20%;
+}
+.stat__gender{
+  display: flex;
+}
+.stat__gender li{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.stat__base{
+  grid-column: 2/4;
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+.stat__base progress{
+  appearance: none;
+  display: block;
+  width:100%;
+  margin-left: 1rem;
+  border-radius: 2rem;
+  height:10px;
+  background: var(--lightGray);
+  background-repeat: no-repeat;
+}
+.stat__base progress::-webkit-progress-bar{
+  appearance: none;
+}
+
+.stat__base progress::-webkit-progress-bar .low{
+  background-color: var(--fire);
+}
+.stat__base progress::-webkit-progress-bar .medium{
+  background-color: orange;
+}
+.stat__base progress::-webkit-progress-bar .high{
+  background-color: var(--grass);
+}
+
+
+
+
+.grass {
+  background-color: var(--grass);
+}
+
+.fire {
+  background-color: var(--fire);
+}
+
+.water {
+  background-color: var(--water);
+}
+
+.bug {
+  background-color: var(--bug);
+}
+
+.normal {
+  background-color: var(--normal);
+}
