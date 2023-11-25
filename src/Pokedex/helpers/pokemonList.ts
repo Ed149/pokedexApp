@@ -1,42 +1,40 @@
+import female from '../../assets/female.png'
+import male from '../../assets/male.png'
+
+
 
 export const getPokemon = async (id: number | string) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}/`;
     let response = await fetch(url);
     let data = await response.json();
 
-    let pokeType: [] = getTypes(data);
-    let abilities: [] = getAbilities(data);
-    let height = getHeight(data.height);
-    let weight = getWeight(data.weight);
+    let pokeType: string[] = getTypes(data.types);
     let sprites = getSprites(data.sprites);
 
     let objData = {
         id: data.id,
         name: data.name,
         type: pokeType,
-        abilities: abilities,
-        height: height,
-        weight: weight,
         sprites: sprites,
-        stats: data.stats
     }
+
+    console.log("objData",objData)
 
     return objData;
 }
 
-export const getPokemonInfo = async (id) => {
+export const getPokemonInfo = async (id:number | string) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}/`;
     let response = await fetch(url);
     let data = await response.json();
-
     const species = await getSpecies(id);
 
-
-    let pokeType: [] = getTypes(data);
-    let abilities: [] = getAbilities(data);
-    let height = getHeight(data.height).toFixed(2);
-    let weight = getWeight(data.weight).toFixed(2);
+    let pokeType: string[] = getTypes(data.types);
+    let abilities: string[] = getAbilities(data.abilities);
+    let height:number = parseFloat(getHeight(data.height).toFixed(2));
+    let weight:number = parseFloat(getWeight(data.weight).toFixed(2));
     let sprites = getSprites(data.sprites);
+    let stats:any[] = getStats(data.stats);
 
     console.log("Data en getpokemon", data);
 
@@ -48,7 +46,7 @@ export const getPokemonInfo = async (id) => {
         height: height,
         weight: weight,
         sprites: sprites,
-        stats: data.stats,
+        stats: stats,
         species: species
     }
 
@@ -56,18 +54,20 @@ export const getPokemonInfo = async (id) => {
 
 }
 
-const getTypes = (data: any[]) => {
-    let typesArray: [] = [];
-    data.types.forEach((element: []) => {
-        typesArray.push(element.type.name);
+const getTypes = (types: any[]):string[] => {
+    let typesArray: string[] = [];
+    console.log(types)
+    types.forEach(({type}):any => {
+        typesArray.push(type.name);
     })
+    
     return typesArray;
 }
 
-const getAbilities = (data: any[]): [] => {
-    let abilitiesArray: [] = [];
-    data.abilities.forEach((element: []) => {
-        abilitiesArray.push(element.ability.name)
+const getAbilities = (abilities: any[]): string[] => {
+    let abilitiesArray: string[] = [];
+    abilities.forEach(({ability}: any) => {
+        abilitiesArray.push(ability.name)
     });
     return abilitiesArray;
 }
@@ -75,6 +75,18 @@ const getAbilities = (data: any[]): [] => {
 const getHeight = (height: number) => height / 10;
 
 const getWeight = (weight: number) => (weight * 0.1) / 1;
+
+const getStats = (stats:[]):any[] =>{
+    console.log(stats);
+    let statArray:any[] = []
+    let name:string;
+    stats.map(({base_stat,stat}:any) =>{
+        name = stat.name == "special-attack" ? "Sp. Atk" : stat.name == "special-defense" ? "Sp. Def" : stat.name;
+        statArray.push({name,base_stat});
+    })
+    console.log("StatAray",statArray)
+    return statArray;
+}
 
 const getSprites = (sprites: any) => {
     let sprite = sprites.other['official-artwork'];
@@ -93,12 +105,10 @@ const getSpecies = async (id: number | string) => {
     const genderRate = getRenderRate(parseInt(data.gender_rate));
     console.log("getEggGroup", genderRate);
 
-    let eggGroup: [] = []
-    data.egg_groups.forEach((el:string) => {
-        eggGroup.push(el.name)
+    let eggGroup: string[] = []
+    data.egg_groups.forEach(({name}:any) => {
+        eggGroup.push(name)
     })
-
-
 
     let species = {
         eggGroup: eggGroup,
@@ -118,12 +128,12 @@ const getRenderRate = (rate: number) => {
         {
             gender:"Female",
             rate:femaleRate,
-            img:'/src/assets/female.png'
+            img:female
         },
         {
             gender:"Male",
             rate:maleRate,
-            img:'/src/assets/male.png'
+            img:male
         }
     ]
 

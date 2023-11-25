@@ -1,8 +1,7 @@
-import React from 'react'
 import { BsArrowLeftShort } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { IoIosMenu } from "react-icons/io";
-import { Navigate,useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 export const Header = ({ page }: any) => {

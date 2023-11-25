@@ -4,13 +4,14 @@ import { Header } from '../components/Header'
 import { PokemonCard } from '../components/PokemonCard'
 import { getPokemon } from '../helpers/pokemonList';
 import { Link } from 'react-router-dom'
+import { Pokemon } from '../../interfaces/pokemon.interface';
 
 function PokemonsPage() {
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Pokemon[]>([]);
 
   const getAllPokemons = async () => {
-    let pokemonData: [] = [];
+    let pokemonData: Pokemon[] = [];
     for (let i = 1; i <= 20; i++) {
       let pokemons = await getPokemon(i);
       pokemonData.push(pokemons);
@@ -32,7 +33,7 @@ function PokemonsPage() {
         <div className='pokemon__cards'>
           {
             data.map((element) => (
-              <Link to={`/pokemon/${element.id}`} style={{ textDecoration: 'none' }}>
+              <Link to={`/pokemon/${element.id}`} key={element.id} style={{ textDecoration: 'none' }}>
                 <PokemonCard
                   key={element.id}
                   pokemon={element}

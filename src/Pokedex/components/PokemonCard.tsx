@@ -1,5 +1,3 @@
-import React from 'react'
-import { PokemonType } from './PokemonType'
 import { PokemonCardInfo } from './PokemonCardInfo'
 
 export const PokemonCard = ({ pokemon}:any) => {

@@ -1,4 +1,3 @@
-import React from 'react'
 
 export const PokemonAbout = ({height,weight,abilities,species,type}:any) => {
     return (

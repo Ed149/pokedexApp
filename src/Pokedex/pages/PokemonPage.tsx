@@ -1,9 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { getPokemonInfo } from '../helpers/pokemonList';
 import { Header } from '../components/Header';
 import { Pokemon } from '../../interfaces/pokemon.interface';
-import { PokemonCard } from '../components/PokemonCard';
 import { PokemonCardInfo } from '../components/PokemonCardInfo';
 import { Link } from 'react-router-dom'
 import { PokemonAbout } from '../components/PokemonAbout';
@@ -11,14 +10,14 @@ import { PokemonStats } from '../components/PokemonStats';
 
 
 export const PokemonPage = () => {
-    const { pokemonId } = useParams();
-    const [pokemon, setPokemon] = useState();
+    const { pokemonId } = useParams<any>();
+    const [pokemon, setPokemon] = useState<Pokemon>();
     const [active,setActive] = useState('about')
 
 
     const getPokemonInfoData = async (id: number | string) => {
         console.log("Id recibido", id)
-        let pkmn = await getPokemonInfo(id);
+        let pkmn:Pokemon = await getPokemonInfo(id);
         console.log("pkmnen getok", pkmn)
         setPokemon(pkmn)
     }
@@ -32,7 +31,7 @@ export const PokemonPage = () => {
 
     useEffect(() => {
         console.log("useeffect")
-        getPokemonInfoData(pokemonId)
+        getPokemonInfoData(pokemonId!)
     }, [pokemonId])
 
 

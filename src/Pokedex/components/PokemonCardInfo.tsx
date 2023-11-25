@@ -1,8 +1,6 @@
-import React from 'react'
 import { PokemonType } from './PokemonType'
 
 export const PokemonCardInfo = ({ id, name, type, page = "pokemonList" }: any) => {
-    console.log("pokemonCardingo", type)
     return (
         <div className={`${page == "pokemon" ? "card__info_pokemon" : ""} card__info`}>
             <div className='card__info_id'>
