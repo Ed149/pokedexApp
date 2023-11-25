@@ -38,7 +38,7 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
-  font-size: 3rem;
+  font-size: 2.5rem;
   padding: 1.5rem 1rem;
 }
 
@@ -148,7 +148,7 @@ ul {
   display: block;
   background-color: white;
   width: 100%;
-  height:466px;
+  height:475px;
   border-top-right-radius:2.6rem;
   border-top-left-radius: 2.6rem;
   bottom: -14.9rem;
@@ -181,7 +181,7 @@ ul {
 
 }
 .pokemon__details_info__resume_nav a.active{
-  color:red;
+  color:rgb(77, 77, 77);
   border-bottom: 1px solid blue;
 }
 .pokemon__details_info__resume_stats{

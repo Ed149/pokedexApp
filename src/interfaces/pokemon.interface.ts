@@ -14,5 +14,5 @@ export interface Pokemon {
         genderRate:any[],
         habitat:string
     }
-    stats: any[];
+    stats?: any[];
 }
